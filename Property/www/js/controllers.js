@@ -70,7 +70,7 @@ angular.module('starter.controllers', [])
 	});
 })
 
-.controller('InquiryCtrl', function($scope, news, $ionicHistory) { 
+.controller('InquiryCtrl', function($scope, news, $ionicHistory, $ionicLoading) { 
     $scope.meetingtime = "Meeting Time";
     
 	$ionicHistory.nextViewOptions({
@@ -126,7 +126,7 @@ angular.module('starter.controllers', [])
         
         
         //alert("ddd");
-        $ionicHistory.show();
+        $ionicLoading.show();
         var message='';
         message = message + 'Dear Admin, \n\n';
         message = message + 'A Inquiry Request is received with information below..\n\n';
@@ -141,7 +141,13 @@ angular.module('starter.controllers', [])
 			$scope.response = data;
 			
 		}).finally(function(response){ console.log(response);
-		$ionicHistory.hide();
+			$scope.name = '';
+			$scope.email = '';
+			$scope.phone = '';
+			$scope.address = '';
+			$scope.meetingtime = '';
+			
+		$ionicLoading.hide();
 			var msg = document.getElementById('msg');
 			msg.className = "card";
             msg.innerHTML = "Your inquiry is send successfully.";

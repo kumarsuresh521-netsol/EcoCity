@@ -48,7 +48,8 @@ angular.module('starter.services', [])
 
 	return({
 		newsfeed: newsfeed,
-		inquiry: inquiry
+		inquiry: inquiry,
+		commercialproperty: commercialproperty
 	});
 	
 	function newsfeed(team_id){ console.log("team feeds by team id");
@@ -57,13 +58,19 @@ angular.module('starter.services', [])
 		return( request.then( handleSuccess, handleError ) );
 	}
 	
-	function inquiry(name, email, phone, address, meetingtime){ alert("HI");
-		var url = "http://api.idyllicgroup.in/webservice/get_posts/?post_type=attachment&name="+name+"&email="+email+"&phone="+phone+"&address="+address+"&meetingtime="+meetingtime; alert(url);
+	function inquiry(name, email, phone, address, meetingtime){
+		var url = "http://api.idyllicgroup.in/webservice/get_posts/?post_type=attachment&name="+name+"&email="+email+"&phone="+phone+"&address="+address+"&meetingtime="+meetingtime;
 		var request = $http.post(url);
 		return( request.then( handleSuccess, handleError ) );
 	}
 	
-	function handleError( response ) { alert(response); alert("error");
+	function commercialproperty(name, email, phone, address, meetingtime){
+		var url = "http://api.idyllicgroup.in/webservice/get_posts/?post_type=page";
+		var request = $http.post(url);
+		return( request.then( handleSuccess, handleError ) );
+	}
+	
+	function handleError( response ) {
 	   if (
 			! angular.isObject( response.data ) ||
 			! response.data.message
@@ -73,7 +80,7 @@ angular.module('starter.services', [])
 		 return( $q.reject( response.data.message ) );
 	}
 	
-	function handleSuccess( response ) { alert(response); alert("success");
+	function handleSuccess( response ) {
 		return( response.data );
 	}
 })

@@ -52,12 +52,13 @@ angular.module('starter.controllers', [])
 	$ionicHistory.clearCache();*/
 })
 
-.controller('CommercialCtrl', function($scope, $ionicHistory) {
-     /*$ionicHistory.nextViewOptions({
-	  disableBack: true
-	});
-	$ionicHistory.clearHistory();
-	$ionicHistory.clearCache();*/
+.controller('CommercialCtrl', function($scope, news, $ionicLoading) {
+	$ionicLoading.show();
+     	news.commercialproperty().then(function(data) {
+			$scope.response = data[0].post_content;
+		}).finally(function(response){
+			$ionicLoading.hide();
+		});
 })
 
 .controller('NewsCtrl', function($scope, $http, $ionicLoading, news) {
@@ -69,7 +70,7 @@ angular.module('starter.controllers', [])
 	});
 })
 
-.controller('InquiryCtrl', function($scope, news, $ionicHistory) { 
+.controller('InquiryCtrl', function($scope, news, $ionicHistory, $ionicLoading) { 
     $scope.meetingtime = "Meeting Time";
     
 	$ionicHistory.nextViewOptions({
@@ -125,7 +126,7 @@ angular.module('starter.controllers', [])
         
         
         //alert("ddd");
-        
+        $ionicLoading.show();
         var message='';
         message = message + 'Dear Admin, \n\n';
         message = message + 'A Inquiry Request is received with information below..\n\n';
@@ -138,7 +139,15 @@ angular.module('starter.controllers', [])
         
 		news.inquiry(name, email, phone, address, meetingtime).then(function(data) {
 			$scope.response = data;
+			
 		}).finally(function(response){ console.log(response);
+			$scope.name = '';
+			$scope.email = '';
+			$scope.phone = '';
+			$scope.address = '';
+			$scope.meetingtime = '';
+			
+		$ionicLoading.hide();
 			var msg = document.getElementById('msg');
 			msg.className = "card";
             msg.innerHTML = "Your inquiry is send successfully.";
