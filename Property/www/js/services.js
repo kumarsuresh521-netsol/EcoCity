@@ -58,13 +58,13 @@ angular.module('starter.services', [])
 		return( request.then( handleSuccess, handleError ) );
 	}
 	
-	function inquiry(name, email, phone, address, meetingtime){
-		var url = "http://api.idyllicgroup.in/webservice/get_posts/?post_type=attachment&name="+name+"&email="+email+"&phone="+phone+"&address="+address+"&meetingtime="+meetingtime;
+	function inquiry(name, email, phone, address){
+		var url = "http://api.idyllicgroup.in/webservice/get_posts/?post_type=attachment&name="+name+"&email="+email+"&phone="+phone+"&address="+address;
 		var request = $http.post(url);
 		return( request.then( handleSuccess, handleError ) );
 	}
 	
-	function commercialproperty(name, email, phone, address, meetingtime){
+	function commercialproperty(){
 		var url = "http://api.idyllicgroup.in/webservice/get_posts/?post_type=page";
 		var request = $http.post(url);
 		return( request.then( handleSuccess, handleError ) );

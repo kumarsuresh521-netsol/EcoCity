@@ -78,17 +78,14 @@ angular.module('starter.controllers', [])
 	});
 	$ionicHistory.clearHistory();
 	$ionicHistory.clearCache();
-	
-    $scope.showSelectValue = function(meetingtime) {
-        $scope.meetingtime = meetingtime;
-    }
+
 
     $scope.submitForm = function(){ console.log($scope);
         var name = $scope.name; console.log($scope.name);
         var email = $scope.email;
         var phone = $scope.phone;
         var address = $scope.address;
-        var meetingtime = $scope.meetingtime;
+        
         
         if(!name){
             var msg = document.getElementById('msg');
@@ -133,11 +130,10 @@ angular.module('starter.controllers', [])
         message = message + 'Name: '+name+'\n\n';
         message = message + 'Email: '+email+'\n\n';
         message = message + 'Phone: '+phone+'\n\n';
-        message = message + 'Address: '+address+'\n\n';
-        message = message + 'Meeting Time: '+meetingtime;
+        message = message + 'Address: '+address
         
         
-		news.inquiry(name, email, phone, address, meetingtime).then(function(data) {
+		news.inquiry(name, email, phone, address).then(function(data) {
 			$scope.response = data;
 			
 		}).finally(function(response){ console.log(response);
@@ -145,7 +141,6 @@ angular.module('starter.controllers', [])
 			$scope.email = '';
 			$scope.phone = '';
 			$scope.address = '';
-			$scope.meetingtime = '';
 			
 		$ionicLoading.hide();
 			var msg = document.getElementById('msg');
