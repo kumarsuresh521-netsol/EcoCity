@@ -70,6 +70,32 @@ angular.module('starter.controllers', [])
 	});
 })
 
+.controller('NewsAndUpdatesCtrl', function($scope, $state) {
+   $scope.goToSociety = function(page_name, page_id) {
+	 $state.go("app.societies", {'page_name':page_name, 'page_id':page_id});
+   }
+})
+
+.controller('SocietyCtrl', function($scope, $http, $ionicLoading, news, $stateParams) {
+	$scope.page_title = $stateParams.page_name;
+	$ionicLoading.show();	
+	page_id = $stateParams.page_id;
+	news.societies().then(function(data) {
+	var abcd = [];
+	abc = data[page_id].post_content.split('"');
+	a = 3;
+	for(i=0; i<=abc.length; i++){
+		if(abc[a] && abc[a].length > 10){
+			abcd.push(abc[a]);
+		}
+		a = a + 10;
+	}
+	$scope.response = abcd;
+	}).finally(function(error){
+		$ionicLoading.hide();
+	});
+})
+
 .controller('InquiryCtrl', function($scope, news, $ionicHistory, $ionicLoading) { 
     $scope.meetingtime = "Meeting Time";
     
@@ -84,7 +110,8 @@ angular.module('starter.controllers', [])
         var name = $scope.name; console.log($scope.name);
         var email = $scope.email;
         var phone = $scope.phone;
-        var address = $scope.address;
+        var address = '';
+		address = $scope.address;
         
         
         if(!name){
@@ -96,7 +123,20 @@ angular.module('starter.controllers', [])
                     msg.innerHTML = ''
                 }, 3000);
                 return;
-        } else if(email){
+        } 
+		
+		if(!email){
+            var msg = document.getElementById('msg');
+			msg.className = "card";
+            msg.innerHTML = "Please Enter your email id.";
+               setTimeout(function() {
+				   msg.className = "";
+                    msg.innerHTML = ''
+                }, 3000);
+                return;
+        }
+
+		if(email){
              var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
              if(!re.test(email)){
                var msg = document.getElementById('msg');
@@ -108,7 +148,9 @@ angular.module('starter.controllers', [])
                     }, 3000);
                return;
              }
-        } else if(!phone){
+        } 
+
+		if(!phone){
             var msg = document.getElementById('msg');
 			msg.className = "card";
             msg.innerHTML = "Please Enter your phone number.";
@@ -117,12 +159,12 @@ angular.module('starter.controllers', [])
                     msg.innerHTML = ''
                 }, 3000);
                 return;
-        } 
-        
-        
-        
-        
-        //alert("ddd");
+        }
+		
+		if(!address || address == 'undefined'){
+            address = '';
+        }
+
         $ionicLoading.show();
         var message='';
         message = message + 'Dear Admin, \n\n';
@@ -145,7 +187,7 @@ angular.module('starter.controllers', [])
 		$ionicLoading.hide();
 			var msg = document.getElementById('msg');
 			msg.className = "card";
-            msg.innerHTML = "Your inquiry is send successfully.";
+            msg.innerHTML = "You'll be shortly contacted by our representative.";
                setTimeout(function() {
 				   msg.className = "";
                     msg.innerHTML = ''
