@@ -106,8 +106,8 @@ angular.module('starter.controllers', [])
 	$ionicHistory.clearCache();
 
 
-    $scope.submitForm = function(){ console.log($scope);
-        var name = $scope.name; console.log($scope.name);
+    $scope.submitForm = function(){ //console.log($scope);
+        var name = $scope.name; //console.log($scope.name);
         var email = $scope.email;
         var phone = $scope.phone;
         var address = '';
@@ -178,7 +178,7 @@ angular.module('starter.controllers', [])
 		news.inquiry(name, email, phone, address).then(function(data) {
 			$scope.response = data;
 			
-		}).finally(function(response){ console.log(response);
+		}).finally(function(response){ //console.log(response);
 			$scope.name = '';
 			$scope.email = '';
 			$scope.phone = '';
@@ -215,7 +215,7 @@ angular.module('starter.controllers', [])
             body: str,
             isHtml: true
           };
-        console.log(email);
+        //console.log(email);
          EmailComposer.open(email).then(null, function () { //alert("success");
            // user cancelled email
          });  
@@ -274,7 +274,7 @@ angular.module('starter.controllers', [])
     function initialize() {
           
     
-    myLatlng12 = new google.maps.LatLng(30.731212, 76.830220);
+    myLatlng12 = new google.maps.LatLng(30.609922, 76.946465);
                         
         var mapOptions = {
             center: myLatlng12,
@@ -289,7 +289,7 @@ angular.module('starter.controllers', [])
  
         map = new google.maps.Map(document.getElementById("map"), mapOptions);
 		
-		navigator.geolocation.getCurrentPosition(function(pos) {    console.log(pos);    
+		navigator.geolocation.getCurrentPosition(function(pos) {    //console.log(pos);    
 
         myLatlng12 = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
         
@@ -305,7 +305,7 @@ angular.module('starter.controllers', [])
         $scope.map = map;
         });
 		
-		        officeLatLng = new google.maps.LatLng(30.694209, 76.860565);
+		        officeLatLng = new google.maps.LatLng(30.609922, 76.946465);
         
 				map.setCenter(officeLatLng); 
 				
@@ -341,18 +341,18 @@ angular.module('starter.controllers', [])
             origin : start,
             destination : destination,
             travelMode : google.maps.DirectionsTravelMode[travelMode]
-        };  console.log("98"); console.log(request);
+        };  //console.log("98"); //console.log(request);
         
       //  service = new google.maps.places.PlacesService(map);
 	  
 		
         
-        directionsService.route(request, function(response, status) { ///alert("theri");
+        directionsService.route(request, function(response, status) { //alert("theri");
             if (status == google.maps.DirectionsStatus.OK) { //alert("ok");
                 
-                directionsDisplay.setDirections(response); console.log("Route Response"); console.log(response);
+                directionsDisplay.setDirections(response); //console.log("Route Response"); //console.log(response);
             
-                directionsDisplay.setDirections(response); console.log("Route Response"); console.log(response);
+                directionsDisplay.setDirections(response); //console.log("Route Response"); //console.log(response);
                 
                 RouteString = response;
                 
@@ -360,20 +360,20 @@ angular.module('starter.controllers', [])
                 
                 route = RouteString.routes[0];
                   var summaryPanel = document.getElementById('directions-panel');
-                  summaryPanel = ''; console.log("legs"); console.log(route.legs);
+                  summaryPanel = ''; //console.log("legs"); //console.log(route.legs);
                   // For each route, display summary information.
                   for (var i = 0; i < route.legs.length; i++) { 
                     
-                    console.log(route.legs[i].steps);
+                    //console.log(route.legs[i].steps);
                    
                     var lmlShowDirectionIs = 0;
                   // $scope.totalText = " @@@@Distance " + route.legs[0].distance.text + " And Durations is  " + route.legs[0].duration.text;
                     for(var j = 0; j < route.legs[i].steps.length; j++){
                         
-                        rroute = route.legs[i].steps[j]; //console.log(rroute); console.log("hello route latlong"); console.log(rroute.)
-                       console.log("hello computing hard calculations :-C");
+                        rroute = route.legs[i].steps[j]; ////console.log(rroute); //console.log("hello route latlong"); //console.log(rroute.)
+                       //console.log("hello computing hard calculations :-C");
                       
-                        console.log("My Current Location");                      
+                        //console.log("My Current Location");                      
                         
                     }
                     
@@ -388,7 +388,7 @@ angular.module('starter.controllers', [])
                     summaryPanel += route.legs[i].distance.text + '<br><br>';
                   }
       
-                    console.log(summaryPanel);
+                    //console.log(summaryPanel);
                      launchNavi(start, destination);
    
             }else{
@@ -397,7 +397,7 @@ angular.module('starter.controllers', [])
 			launchNavi(start, destination);
         });
         directionsDisplay.setPanel(document.getElementById('right-panel'));
-        directionsDisplay.setMap(map);  console.log("Right Panel ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        directionsDisplay.setMap(map);  //console.log("Right Panel ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         
         
         // var navigatorIcon = angular.element( document.querySelector( '#navigator' ) );
@@ -414,7 +414,7 @@ angular.module('starter.controllers', [])
 		launchnavigator.navigate(
 		  [dlat, dlng],
 		  [slat, slng],
-		  function(success){ console.log(success);
+		  function(success){ //console.log(success);
 			 // alert("Plugin success");
 		  },
 		  function(error){

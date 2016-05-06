@@ -50,9 +50,9 @@
     <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
     <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
     <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
-    <name>My Property</name>
+    <name>Panchkula Eco City</name>
     <description>
-        An Idlic Group Of Properties
+       Panchkula Eco City, An Idlic Group Of Properties
     </description>
     <author email="kumarsuresh521@gmail.com" href="https://branded.me/kumarsuresh521/">
       Suresh Kumar
